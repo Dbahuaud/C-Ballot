@@ -62,9 +62,10 @@ class Users extends Model
         if(!empty($inputs['account']) && !empty($inputs['password'])){
             $number = Users::where('login', $inputs['account'])->count();
             if($number != 0){
-                $user = Users::where('login', $inputs['account'])->get();
-                if(md5($inputs['password']) == $user[0]->password){
-                    return redirect('/');
+                $user = Users::where('login', $inputs['account'])->get()[0];
+                if(md5($inputs['password']) == $user->password){
+                    Session::put('user', $user);
+                    return view('index', ['message' => 'Bienvenue']);
                 }
                 else{
                     return view('false');
@@ -73,10 +74,10 @@ class Users extends Model
             else{
                 $number = Users::where('email', $inputs['account'])->count();
                 if($number != 0){
-                    $user = Users::where('email', $inputs['account'])->get();
-                    if(md5($inputs['password']) == $user[0]->password){
-                        Session::put('user', $user[0]);
-                        return redirect('/');
+                    $user = Users::where('email', $inputs['account'])->get()[0];
+                    if(md5($inputs['password']) == $user->password){
+                        Session::put('user', $user);
+                        return view('index', ['message' => 'Bienvenue']);
                     }
                     else{
                         $error = 'Email ou Mot de passe incorrect';
