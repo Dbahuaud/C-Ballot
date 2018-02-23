@@ -1,0 +1,13 @@
+#carousel{
+    width:100vh;
+    position: relative;
+    top:-500px;
+}
+
+a{
+    color: red;
+}
+
+.navbar{
+    display: inline-block;
+}

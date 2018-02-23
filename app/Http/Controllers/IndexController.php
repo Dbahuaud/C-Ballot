@@ -12,5 +12,7 @@ use App\Events;
 
 class IndexController extends Controller
 {
-
+    public function Index(){
+        return view('Dimitri.index');
+    }
 }

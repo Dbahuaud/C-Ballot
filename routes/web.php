@@ -11,3 +11,4 @@
 |
 */
 
+Route::get('/', 'IndexController@Index');
