@@ -36,7 +36,7 @@ class Users extends Model
                     Mail::send('mail.register', ['newUser' => $newUser], function ($message) use ($newUser) {
                         $message->to($newUser->email, $newUser->firstname . " " . $newUser->lastname)->subject('Validation d\'inscription');
                     });
-                    return view("register.fresh");
+                    return view('index', ['message' => 'Vous avez reçu un mail pour valider votre compte... C-Ballot']);
                 }
                 else{
                     $error = 'Email ou Pseudo déjà existant';

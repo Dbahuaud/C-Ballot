@@ -28,7 +28,7 @@ class IndexController extends Controller
         $user->valid = 1;
         $user->save();
         Session::put('user', $user);
-        return view('register.validate');
+        return view('index', ['message' => 'Merci pour votre inscription :) Signé, le DIGI']);
     }
 
     public function DeleteReg(Request $request, $id){
@@ -40,6 +40,10 @@ class IndexController extends Controller
     }
     public function UpdateUser(Request $request){
         return Users::UpdateUser($request);
+    }
+
+    public function Index(Request $request){
+        return view('index');
     }
 
 }
