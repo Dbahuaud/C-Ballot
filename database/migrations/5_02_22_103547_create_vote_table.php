@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParticipantTable extends Migration
+class CreateVoteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateParticipantTable extends Migration
      */
     public function up()
     {
-        Schema::create('participant', function (Blueprint $table) {
+        Schema::create('vote', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email', 70);
-            $table->string('unicode', 15);
-            $table->boolean('throwed');
-            $table->integer('id_event');
+            $table->dateTime('datetime_vote');
+            $table->integer('id_answer');
+            $table->foreign('answer')->references('answer')->on('id');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateParticipantTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participant');
+        Schema::dropIfExists('vote');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTable extends Migration
+class CreateParticipantTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('participant', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login', 40);
-            $table->string('password', 255);
             $table->string('email', 70);
-            $table->string('lastname', 50);
-            $table->string('firstname', 50);
-            $table->boolean('valid');
+            $table->string('unicode', 15);
+            $table->boolean('throwed');
+            $table->integer('id_event');
+            $table->foreign('id_event')->references('event')->on('id');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('participant');
     }
 }

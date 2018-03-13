@@ -13,6 +13,10 @@ class Users extends Model
 {
     public $table = 'user';
 
+    public static function Unicode($lenght) {
+        return (str_random($lenght));
+    }
+
     public static function AddUser(Request $request){
 
         //Besoin pour un new user : login, password, email, firstname, lastname
@@ -31,6 +35,7 @@ class Users extends Model
                     $newUser->email = $inputs['email'];
                     $newUser->firstname = $inputs['firstname'];
                     $newUser->lastname = $inputs['lastname'];
+                    $newUser->unicode = Users::Unicode(25);
                     $newUser->valid = 0;
                     $newUser->save();
                     Mail::send('mail.register', ['newUser' => $newUser], function ($message) use ($newUser) {

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnswerTable extends Migration
+class CreateOrganizationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer', function (Blueprint $table) {
+        Schema::create('organization', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('answer', 100);
-            $table->integer('id_event');
+            $table->string('name', 70);
+            $table->string('siret', 16);
+            $table->integer('id_user');
+            $table->string('unicode', 25);
+            $table->foreign('id_user')->references('user')->on('id');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer');
+        Schema::dropIfExists('organization');
     }
 }
