@@ -11,6 +11,7 @@ use App\Participants;
 use App\Organizations;
 use App\Events;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
@@ -48,4 +49,29 @@ class IndexController extends Controller
         return view('index');
     }
 
+    public function Forgot() {
+        return view('forgot');
+    }
+
+    public function ForgotSubmit(Request $request) {
+        return Users::ForgotUser($request);
+    }
+
+    public function ChangePassword(Request $request, $unicode) {
+        $user = Users::where('unicode', $unicode)->get()[0];
+        return view('changepass', ['user' => $user]);
+    }
+
+    public function ChangePass(Request $request) {
+        $input = $request->all();
+        if ($input['password'] == $input['passwordc']) {
+            $user = Users::where('unicode', $input['unicode'])->get()[0];
+            $user->password = md5($input['password']);
+            Mail::send('mail.valid_change_pass', ['user' => $user],function ($message) use($user) {
+                $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Mots de passe changé");
+            });
+            $user->save();
+        }
+        return redirect('/');
+    }
 }

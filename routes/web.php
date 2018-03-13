@@ -20,5 +20,8 @@ Route::post('/disconnect', 'IndexController@Disconnect');
 Route::get('/register/valid/{unicode}', 'IndexController@ValidReg');
 Route::get('/user/delete/{unicode}', 'IndexController@DeleteUser');
 Route::get('/user/changepassword/{unicode}', 'IndexController@ChangePassword');
+Route::get('/forgot/', 'IndexController@Forgot');
+Route::post('/forgot/', 'IndexController@ForgotSubmit');
+Route::post('/forgot/change/', 'IndexController@ChangePass');
 //Route::get('/register/delete/{login}', 'IndexController@DeleteReg');
 //Route::post('/update', 'IndexController@UpdateUser');

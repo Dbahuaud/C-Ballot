@@ -124,13 +124,15 @@ class Users extends Model
         Mail::send('mail.delete', ['user' => $user], function ($message) use($user){
             $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
         });
+        return redirect('/');
     }
 
     public static function ForgotUser(Request $request) {
         $inputs = $request->all();
         $user = Users::where('email', $inputs['email'])->get()[0];
         Mail::send('mail.forgot', ['user' => $user], function($message) use($user) {
-            $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
+            $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Réinitialisation de votre mots de passe");
         });
+        return redirect('/');
     }
 }

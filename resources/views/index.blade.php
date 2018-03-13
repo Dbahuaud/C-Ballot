@@ -163,7 +163,7 @@
                                             <input class="form-control" type="password" name="password">
 
                                                 </div>
-                                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                                            <button type="submit" class="btn btn-primary">Se connecter</button><a href="/forgot/"><i>Mots de passe oublié</i></a>
                                             {{--<a href="#">Mot de passe oublié ?</a>--}}
                                         </form>
                                     {{--</form>--}}
