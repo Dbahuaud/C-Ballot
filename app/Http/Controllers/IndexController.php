@@ -23,16 +23,18 @@ class IndexController extends Controller
     public function Connect(Request $request){
         return Users::ConnectUser($request);
     }
-    public function ValidReg(Request $request, $login){
-        $user = Users::where('login', $login)->get()[0];
+    public function ValidReg(Request $request, $unicode){
+        $user = Users::where('unicode', $unicode)->get()[0];
         $user->valid = 1;
         $user->save();
         Session::put('user', $user);
         return view('index', ['message' => 'Merci pour votre inscription :) Signé, le DIGI']);
     }
 
-    public function DeleteReg(Request $request, $id){
-        Users::where('id', $id)->delete();
+    public function DeleteUser(Requeste $request, $unicode) {
+        $user = Users::where('unicode', $unicode)->get()[0];
+        $user->delete();
+        return redirect('/');
     }
     public function Disconnect(Request $request){
         $request->session()->flush();

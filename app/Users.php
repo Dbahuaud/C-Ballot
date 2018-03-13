@@ -125,4 +125,12 @@ class Users extends Model
             $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
         });
     }
+
+    public static function ForgotUser(Request $request) {
+        $inputs = $request->all();
+        $user = Users::where('email', $inputs['email'])->get()[0];
+        Mail::send('mail.forgot', ['user' => $user], function($message) use($user) {
+            $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
+        });
+    }
 }
