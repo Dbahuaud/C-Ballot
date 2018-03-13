@@ -20,6 +20,7 @@ class CreateUserTable extends Migration
             $table->string('email', 70);
             $table->string('lastname', 50);
             $table->string('firstname', 50);
+            $table->string('unicode', 25);
             $table->boolean('valid');
             $table->timestamps();
         });

@@ -13,6 +13,10 @@ class Users extends Model
 {
     public $table = 'user';
 
+    public static function Unicode($lenght) {
+        return (str_random($lenght));
+    }
+
     public static function AddUser(Request $request){
 
         //Besoin pour un new user : login, password, email, firstname, lastname
@@ -31,12 +35,13 @@ class Users extends Model
                     $newUser->email = $inputs['email'];
                     $newUser->firstname = $inputs['firstname'];
                     $newUser->lastname = $inputs['lastname'];
+                    $newUser->unicode = Users::Unicode(25);
                     $newUser->valid = 0;
                     $newUser->save();
                     Mail::send('mail.register', ['newUser' => $newUser], function ($message) use ($newUser) {
                         $message->to($newUser->email, $newUser->firstname . " " . $newUser->lastname)->subject('Validation d\'inscription');
                     });
-                    return view("register.fresh");
+                    return view('index', ['message' => 'Vous avez reçu un mail pour valider votre compte... C-Ballot']);
                 }
                 else{
                     $error = 'Email ou Pseudo déjà existant';
@@ -62,9 +67,10 @@ class Users extends Model
         if(!empty($inputs['account']) && !empty($inputs['password'])){
             $number = Users::where('login', $inputs['account'])->count();
             if($number != 0){
-                $user = Users::where('login', $inputs['account'])->get();
-                if(md5($inputs['password']) == $user[0]->password){
-                    return redirect('/');
+                $user = Users::where('login', $inputs['account'])->get()[0];
+                if(md5($inputs['password']) == $user->password){
+                    Session::put('user', $user);
+                    return view('index', ['message' => 'Bienvenue']);
                 }
                 else{
                     return view('false');
@@ -73,10 +79,10 @@ class Users extends Model
             else{
                 $number = Users::where('email', $inputs['account'])->count();
                 if($number != 0){
-                    $user = Users::where('email', $inputs['account'])->get();
-                    if(md5($inputs['password']) == $user[0]->password){
-                        Session::put('user', $user[0]);
-                        return redirect('/');
+                    $user = Users::where('email', $inputs['account'])->get()[0];
+                    if(md5($inputs['password']) == $user->password){
+                        Session::put('user', $user);
+                        return view('index', ['message' => 'Bienvenue']);
                     }
                     else{
                         $error = 'Email ou Mot de passe incorrect';

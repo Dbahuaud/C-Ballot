@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizationTable extends Migration
+class CreateVoteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateOrganizationTable extends Migration
      */
     public function up()
     {
-        Schema::create('organization', function (Blueprint $table) {
+        Schema::create('vote', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 70);
-            $table->string('siret', 16);
-            $table->integer('id_user');
+            $table->dateTime('datetime_vote');
+            $table->integer('id_answer');
+            $table->foreign('id_answer')->references('answer')->on('id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateOrganizationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization');
+        Schema::dropIfExists('vote');
     }
 }

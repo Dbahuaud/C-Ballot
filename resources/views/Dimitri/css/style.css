@@ -1,0 +1,26 @@
+#carousel{
+    width:100vh;
+    position: relative;
+    top:-500px;
+}
+
+a{
+    color: red;
+}
+
+.navbar{
+    display: inline-block;
+}
+
+li{
+    display: inline-block;
+    padding: 20px;
+}
+
+p{
+    color: red;
+}
+
+.navbar{
+    display: flex;
+}

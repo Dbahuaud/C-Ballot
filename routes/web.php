@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', 'IndexController@Form');
+Route::get('/', 'IndexController@Index');
+
+//Route::get('/', 'IndexController@Form');
 Route::post('/', 'IndexController@FormSubmit');
 Route::post('/connect', 'IndexController@Connect');
 Route::post('/disconnect', 'IndexController@Disconnect');
 Route::get('/register/valid/{login}', 'IndexController@ValidReg');
-Route::get('/register/delete/{login}', 'IndexController@DeleteReg');
-Route::post('/update', 'IndexController@UpdateUser');
+//Route::get('/register/delete/{login}', 'IndexController@DeleteReg');
+//Route::post('/update', 'IndexController@UpdateUser');
