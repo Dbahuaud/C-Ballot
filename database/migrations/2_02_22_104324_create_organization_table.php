@@ -17,8 +17,8 @@ class CreateOrganizationTable extends Migration
             $table->increments('id');
             $table->string('name', 70);
             $table->string('siret', 16);
-            $table->integer('id_user');
             $table->string('unicode', 25);
+            $table->integer('id_user');
             $table->foreign('id_user')->references('user')->on('id');
             $table->timestamps();
         });

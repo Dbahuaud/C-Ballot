@@ -1,1 +1,1 @@
-<p>Bonjour {{$user->firstname . " " . $user->lastname}}, Votre mots de passe a été modifié</p>
+<p>Bonjour {{$user->firstname . " " . $user->lastname}}, Votre mot de passe a été modifié</p>

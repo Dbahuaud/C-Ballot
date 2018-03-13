@@ -4,4 +4,4 @@
     <input type="email" name="email">
     <button>Envoyer le mail</button>
 </form>
-<i>Un mail vous sera envoyé pour réinitialiser votre mots de passe</i>
+<i>Un mail vous sera envoyé pour réinitialiser votre mot de passe</i>
