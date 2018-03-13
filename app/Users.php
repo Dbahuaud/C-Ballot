@@ -70,7 +70,7 @@ class Users extends Model
                 $user = Users::where('login', $inputs['account'])->get()[0];
                 if(md5($inputs['password']) == $user->password){
                     Session::put('user', $user);
-                    return view('index', ['message' => 'Bienvenue']);
+                    return redirect()->route('index', ['message' => 'Bienvenue']);
                 }
                 else{
                     return view('false');
@@ -86,7 +86,7 @@ class Users extends Model
                     }
                     else{
                         $error = 'Email ou Mot de passe incorrect';
-                        return view('false', ['error' => $error]);
+                        return redirect()->route('index', ['message' => 'Bienvenue']);
                     }
                 }
                 else{

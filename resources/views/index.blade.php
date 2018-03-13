@@ -214,7 +214,7 @@
                             <!-- Modal body -->
                             <div class="modal-body">
 
-                                <form action="{{action("IndexController@FormSubmit")}}" method="post">
+                                <form action="{{action("IndexController@RegSubmit")}}" method="post">
                                     {{csrf_field()}}
                                     <div class="form-group">
                                     <label for="">Login</label>
@@ -313,7 +313,6 @@
                 </div>
             </div>
         </div>
-
-
+    </div>
 </body>
 </html>
