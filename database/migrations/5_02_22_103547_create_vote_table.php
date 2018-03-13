@@ -17,7 +17,7 @@ class CreateVoteTable extends Migration
             $table->increments('id');
             $table->dateTime('datetime_vote');
             $table->integer('id_answer');
-            $table->foreign('answer')->references('answer')->on('id');
+            $table->foreign('id_answer')->references('answer')->on('id');
             $table->timestamps();
         });
     }
