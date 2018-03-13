@@ -19,6 +19,7 @@ class CreateParticipantTable extends Migration
             $table->string('unicode', 15);
             $table->boolean('throwed');
             $table->integer('id_event');
+            $table->foreign('id_event')->references('event')->on('id');
             $table->timestamps();
         });
     }

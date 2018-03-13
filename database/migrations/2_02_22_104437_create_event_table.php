@@ -21,7 +21,7 @@ class CreateEventTable extends Migration
             $table->dateTime('datetime_end');
             $table->boolean('active');
             $table->integer('nb_answer');
-            $table->string('id_admin', 10);
+            $table->string('unicode_owner', 25);
             $table->timestamps();
         });
     }
