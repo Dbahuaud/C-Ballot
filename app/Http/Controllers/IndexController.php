@@ -50,7 +50,7 @@ class IndexController extends Controller
         return redirect('/');
     }
     // Delete validation link
-    public function DeleteUser(Requeste $request, $unicode) {
+    public function DeleteUser(Request $request, $unicode) {
         $user = Users::where('unicode', $unicode)->get()[0];
         $user->delete();
         return redirect('/');
