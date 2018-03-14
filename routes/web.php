@@ -15,6 +15,20 @@
 Route::get('/', 'IndexController@Index')->name('index');
 
 
+// PROTECTOR
+//
+// Connection
+Route::get('/connect', 'IndexController@NoFormRedirect');
+// Disconnection
+Route::get('/disconnect', 'IndexController@NoFormRedirect');
+// Forgot password
+Route::get('/forgot/', 'IndexController@NoFormRedirect');
+// Change password
+Route::get('/forgot/change/', 'IndexController@NoFormRedirect');
+// Org updater
+Route::get('/org/update/', 'IndexController@NoFormRedirect');
+
+
 // USER
 //
 // Register Submitted form
@@ -45,3 +59,19 @@ Route::get('/event/add/', 'IndexController@AddEvent');
 Route::post('/event/create/', 'IndexController@CreateEvent');
 // Organisation Event's list
 Route::get('/event/{Org}/', 'IndexController@OrgEvent');
+
+
+// ORGANIZATIONS
+//
+// Form submitted org create
+Route::post('/org/create/', 'IndexController@FormSubmitOrg');
+// Form org create
+Route::get('/org/create/', 'IndexController@NoFormRedirect');
+// Org list
+Route::get('/org/', 'IndexController@OrgList');
+// Org updater form by {Name}
+Route::get('/org/update/{name}', 'IndexController@UpdateOrg');
+// Org updater form submitted
+Route::post('/org/update/', 'IndexController@OrganizationUpdate');
+// Org deleter
+Route::get('/org/delete/{name}', 'IndexController@DeleteFirstLink');

@@ -114,4 +114,31 @@ class IndexController extends Controller
         $event = Events::where('unicode_owner', Organizations::where("name", $realorg)->get()[0]->unicode)->get();
         return view('list_event', ['event' => $event, 'org' => $org]);
     }
+
+    public function FormSubmitOrg(Request $request){
+        return Organizations::AddOrg($request);
+    }
+
+    public function OrgList(Request $request) {
+        $id_user = $request->session()->get('user')->id;
+        $org = Organizations::where('id_user', $id_user)->get();
+        return view("organizations.list_org", ["org" => $org]);
+    }
+
+    public function UpdateOrg(Request $request, $name) {
+        $org = Organizations::where('name', urldecode($name))->get()[0];
+        return view('organizations.update_org', ['org' => $org]);
+    }
+
+    public function OrganizationUpdate(Request $request) {
+        return Organizations::UpdateOrg($request);
+    }
+
+    public function NoFormRedirect() {
+        return redirect()->route('index');
+    }
+
+    public function DeleteFirstLink(Request $request, $name) {
+        $owner = Users::where('id', Organizations::where('name', urldecode($name)));
+    }
 }
