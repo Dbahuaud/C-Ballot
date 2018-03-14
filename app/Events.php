@@ -25,7 +25,7 @@ class Events extends Model
             $nEvent->active = 1;
             $nEvent->nb_answer = 1;
             $nEvent->save();
-            return redirect()->route('index', ['message' => 'Campagne Créer !']);
+            return view('index', ['message' => 'Campagne créee !']);
         }
         return redirect()->route('index', ['Error' => 'Erreur']);
     }

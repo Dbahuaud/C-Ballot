@@ -1,0 +1,89 @@
+/* BASE */
+li{
+    display: inline-block;
+    margin-right:20px;
+}
+
+p{
+    color: red;
+}
+
+a{
+    color: black;
+    list-style: none;
+}
+
+/* NAV */
+
+
+
+#mdpLost{
+    color: red;
+    font-size: 15px;
+
+}
+
+.nav-item{
+    display: inline-block;
+}
+
+.fas{
+    margin-right: 10px;
+}
+
+#btnDeco{
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+#searchBar{
+    margin-left: 10px;
+}
+
+.collapse {
+    visibility: hidden;
+}
+
+.collapse.show {
+    visibility: visible;
+    display: inline-block;
+}
+
+
+/* ASSO MODAL */
+
+#modalASSO{
+    width: 500px;
+
+    position: absolute;
+    background-color: white;
+    top:65px;
+    z-index: 1000;
+    box-shadow: 1px 1px 12px black;
+}
+
+/* MODAL */
+
+.modalTitle{
+    color: black;
+}
+
+
+/* CAROUSSEL */
+
+#carousel{
+    max-width:100%;
+}
+
+#carousel img{
+    max-width: 100%;
+    height:auto;
+}
+
+.punchline{
+    color: white;
+    width: 500px;
+    position: absolute;
+    top:300px;
+    font-size: 18px;
+}
