@@ -74,4 +74,45 @@ class IndexController extends Controller
         }
         return redirect('/');
     }
+
+
+
+
+
+
+
+    /**
+     * ##########################################
+    */
+
+
+
+
+
+    public function FormSubmitOrg(Request $request){
+        return Organizations::AddOrg($request);
+    }
+
+    public function OrgList(Request $request) {
+        $id_user = $request->session()->get('user')->id;
+        $org = Organizations::where('id_user', $id_user)->get();
+        return view("list_org", ["org" => $org]);
+    }
+
+    public function UpdateOrg(Request $request, $name) {
+        $org = Organizations::where('name', urldecode($name))->get()[0];
+        return view('update_org', ['org' => $org]);
+    }
+
+    public function OrganizationUpdate(Request $request) {
+        return Organizations::UpdateOrg($request);
+    }
+
+    public function NoFormRedirect() {
+        return redirect()->route('index');
+    }
+
+    public function DeleteFirstLink(Request $request, $name) {
+        $owner = Users::where('id', Organizations::where('name', urldecode($name)));
+    }
 }

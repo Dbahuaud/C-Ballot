@@ -1,0 +1,1 @@
+<p>Votre Organisation a bien été créée !</p>
