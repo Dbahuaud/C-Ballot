@@ -32,7 +32,7 @@ class IndexController extends Controller
         return view('index', ['message' => 'Merci pour votre inscription :) Signé, le DIGI']);
     }
 
-    public function DeleteUser(Requeste $request, $unicode) {
+    public function DeleteUser(Request $request, $unicode) {
         $user = Users::where('unicode', $unicode)->get()[0];
         $user->delete();
         return redirect('/');
@@ -73,5 +73,31 @@ class IndexController extends Controller
             $user->save();
         }
         return redirect('/');
+    }
+
+    /**
+     * ############################################## fonction organisation ########################################""
+     */
+
+
+    public function FormSubmitOrg(Request $request){
+        return Organizations::AddOrg($request);
+    }
+
+    public function DeleteOrg(Request $request, $unicode) {
+        return Organizations::DeleteOrg($request);
+    }
+
+    public function UpdateOrg(Request $request){
+        return Organization::UpdateOrg($request);
+    }
+
+
+    //Fonction validation organisation
+    public function UserCompte(Request $request, $login)
+    {
+        $user = Users::where('login', urldecode($login))->get()[0];
+
+        return view('FredUser', ["user" => $user]);
     }
 }

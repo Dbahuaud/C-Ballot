@@ -8,3 +8,4 @@ class Organizations extends Model
 {
     public $table = 'organization';
 }
+

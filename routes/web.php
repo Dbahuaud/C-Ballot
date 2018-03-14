@@ -23,5 +23,11 @@ Route::get('/user/changepassword/{unicode}', 'IndexController@ChangePassword');
 Route::get('/forgot/', 'IndexController@Forgot');
 Route::post('/forgot/', 'IndexController@ForgotSubmit');
 Route::post('/forgot/change/', 'IndexController@ChangePass');
+Route::post('/org/create','IndexController@FormSubmitOrg');
+Route::post('/org/delete','IndexController@DeleteOrg');
+Route::post('/org/update','IndexController@UpdateOrg');
+Route::get('/{login}','IndexController@UserCompte');
+//Route::post('/{login}','IndexController@UserCompte');
+
 //Route::get('/register/delete/{login}', 'IndexController@DeleteReg');
 //Route::post('/update', 'IndexController@UpdateUser');
