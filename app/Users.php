@@ -120,10 +120,21 @@ class Users extends Model
     }
 
     public static function DeleteUser(Request $request) {
-        $user = Users::where('id', $request->session()->get('user')->id);
+        $user = Users::where('id', $request->session()->get('user')->id)->get()[0];
         Mail::send('mail.delete', ['user' => $user], function ($message) use($user){
             $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
         });
+        return view('index', ['message' => "Pour finaliser la suppression de votre compte, veuillez cliquer sur le lien envoyé par mail."]);
+    }
+
+    public static function Deleter(Request $request, $unicode) {
+        $user = Users::where('unicode', $unicode)->get()[0];
+        $orgs = Organizations::where('id_user', $user->id)->get();
+        foreach($orgs as $org) {
+            Organizations::DeleterValid($request, $org->unicode);
+        }
+        $user->delete();
+        $request->session()->flush();
         return redirect('/');
     }
 

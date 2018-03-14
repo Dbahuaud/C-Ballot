@@ -39,8 +39,10 @@ Route::post('/connect', 'IndexController@Connect');
 Route::post('/disconnect', 'IndexController@Disconnect');
 // E-mail validation account link
 Route::get('/register/valid/{unicode}', 'IndexController@ValidReg');
-// User Delete account
-Route::get('/user/delete/{unicode}', 'IndexController@DeleteUser');
+// User Delete account mail
+Route::get('/user/delete/', 'IndexController@DeleteUser');
+// User Delete valid link
+Route::get('/user/delete/{unicode}', 'IndexController@DeleteUserValid');
 // Change Password Form new password input
 Route::get('/user/changepassword/{unicode}', 'IndexController@ChangePassword');
 // Change Password Form new password input submitted
@@ -59,6 +61,18 @@ Route::get('/event/add/', 'IndexController@AddEvent');
 Route::post('/event/create/', 'IndexController@CreateEvent');
 // Organisation Event's list
 Route::get('/event/{Org}/', 'IndexController@OrgEvent');
+// Send Invitation link
+Route::post('/event/send/', 'IndexController@SendInvitationVote');
+// Vote
+Route::get('/event/{id}/{unicode}', 'IndexController@Vote');
+// Vote submitted
+Route::post('/event/vote', 'IndexController@VoteSend');
+// Close event
+Route::post('/event/close', 'IndexController@CloseEvent');
+// Add participant during event
+Route::get('/participant/{id}', 'IndexController@UpdateParticipant');
+// Update submitted participant
+Route::post('/participant/update', 'IndexController@ParticipantUpdater');
 
 
 // ORGANIZATIONS
@@ -66,7 +80,7 @@ Route::get('/event/{Org}/', 'IndexController@OrgEvent');
 // Form submitted org create
 Route::post('/org/create/', 'IndexController@FormSubmitOrg');
 // Form org create
-Route::get('/org/create/', 'IndexController@NoFormRedirect');
+Route::get('/org/create/', 'IndexController@OrganizationCreate');
 // Org list
 Route::get('/org/', 'IndexController@OrgList');
 // Org updater form by {Name}
@@ -74,4 +88,6 @@ Route::get('/org/update/{name}', 'IndexController@UpdateOrg');
 // Org updater form submitted
 Route::post('/org/update/', 'IndexController@OrganizationUpdate');
 // Org deleter
-Route::get('/org/delete/{name}', 'IndexController@DeleteFirstLink');
+Route::get('/org/delete/{name}', 'IndexController@DeleteOrg');
+// Org deleter valid
+Route::get('/org/delete/valid/{unicode}', 'IndexController@DeleterOrgValid');

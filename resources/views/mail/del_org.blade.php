@@ -1,0 +1,2 @@
+<p>Pour supprimer votre organizations veuillez cliquer sur <a href="http://localhost:8000/org/delete/valid/{{$org->unicode}}">ce lien</a></p>
+<p><i>Attention, si vous supprimez votre organisation, tout les votes en cours seront aussi supprimé.</i></p>

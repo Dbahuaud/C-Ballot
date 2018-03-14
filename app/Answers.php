@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answers extends Model
 {
-    public $table = 'anwser';
+    public $table = 'answer';
 }

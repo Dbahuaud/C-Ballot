@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -49,11 +50,13 @@ class IndexController extends Controller
         $request->session()->flush();
         return redirect('/');
     }
-    // Delete validation link
-    public function DeleteUser(Request $request, $unicode) {
-        $user = Users::where('unicode', $unicode)->get()[0];
-        $user->delete();
-        return redirect('/');
+    // Delete throw mail
+    public function DeleteUser(Request $request) {
+        return Users::DeleteUser($request);
+    }
+    // Delete user valid link
+    public function DeleteUserValid(Request $request, $unicode) {
+        return Users::Deleter($request, $unicode);
     }
     // Update user form submitted
     public function UpdateUser(Request $request){
@@ -100,7 +103,7 @@ class IndexController extends Controller
     // Create Event form view
     public function AddEvent(Request $request) {
         $org = Organizations::where("id_user", Session::get('user')->id)->get();
-        return view('create_event', ['org' => $org]);
+        return view('events.create_event', ['org' => $org]);
     }
     // Create Event form submitted
     public function CreateEvent(Request $request) {
@@ -112,33 +115,107 @@ class IndexController extends Controller
         $realorg = urldecode($org);
         $org = Organizations::where('name', $realorg)->get()[0];
         $event = Events::where('unicode_owner', Organizations::where("name", $realorg)->get()[0]->unicode)->get();
-        return view('list_event', ['event' => $event, 'org' => $org]);
+        return view('events.list_event', ['event' => $event, 'org' => $org]);
+    }
+    // Send Invitation Link
+    public function SendInvitationVote(Request $request) {
+        $input = $request->all();
+        $id_event = $input['id'];
+        $event = Events::where('id', $id_event)->get()[0];
+        $org = Organizations::where('unicode', $event->unicode_owner)->get()[0];
+        $participant = Participants::where('id_event', $id_event)->get();
+        foreach ($participant as $p) {
+            Mail::send("mail.participant", ['org' => $org, 'event' => $event, 'p' => $p], function ($message) use($p){
+                $message->to($p->email, "Bonjour Bondour")->subject("Viens exprimer ta voie !");
+            });
+            $p->throwed = 1;
+            $p->save();
+            echo "OK";
+        }
+        return redirect('/');
+    }
+    // Vote interface
+    public function Vote(Request $request, $id, $unicode) {
+        $p = Participants::where('unicode', $unicode)->get()[0];
+        if ($p->vote == 1)
+            return view('index', ['message' => 'Erreur ! vous avez déja répondu au vote de cette invitation']);
+        if ($p->id_event != $id)
+            return view('index', ['message' => "Erreur ! vous n'avez pas été conviez à cette campagne"]);
+        $event = Events::where('id', $id)->get()[0];
+        if ($event->active == 0)
+            return view('index', ['message' => 'Erreur ! cette campagne est terminée !']);
+        $answer = Answers::where('id_event', $id)->get();
+        return view("events.vote", ['e' => $event, 'a' => $answer, 'p' => $p]);
+    }
+    // Vote Submit
+    public function VoteSend(Request $request) {
+        $inputs = $request->all();
+        $participant = Participants::where('unicode', $inputs['participant'])->get()[0];
+        $participant->vote = 1;
+        $participant->save();
+        $nVote = new Votes();
+        $nVote->id_answer = $inputs['answer'];
+        $nVote->datetime_vote = date('Y-m-d H:i:s');
+        $nVote->save();
+        return redirect('/');
+    }
+    // Close Event
+    public function CloseEvent(Request $request) {
+        $input = $request->all();
+        $event = Events::where('id', $input['id'])->get()[0];
+        $event->active = 0;
+        $event->save();
+        return redirect('/');
+    }
+    // Update participant form
+    public function UpdateParticipant(Request $request, $id) {
+        $p = Participants::where('id_event', $id)->get();
+        return view("events.update_part", ['id' => $id, 'p' => $p]);
+    }
+    // Update participant submitted
+    public function ParticipantUpdater(Request $request) {
+        return Events::UpdateEvent($request);
     }
 
+    // ORGANIZATIONS
+    // Create Organizations
     public function FormSubmitOrg(Request $request){
         return Organizations::AddOrg($request);
     }
-
+    // List organizations owned by user
     public function OrgList(Request $request) {
         $id_user = $request->session()->get('user')->id;
         $org = Organizations::where('id_user', $id_user)->get();
         return view("organizations.list_org", ["org" => $org]);
     }
-
+    // Update Organizations by $name
     public function UpdateOrg(Request $request, $name) {
         $org = Organizations::where('name', urldecode($name))->get()[0];
+        if ($org->id_user != $request->session()->get('user')->id)
+            return view('index', ['message' => "Vous n'avez pas les droits requis pour accéder à cette page"]);
         return view('organizations.update_org', ['org' => $org]);
     }
+    // Create organization form
+    public function OrganizationCreate() {
+        return view('organizations.create_org');
+    }
 
+    // Update organization submitted
     public function OrganizationUpdate(Request $request) {
+
         return Organizations::UpdateOrg($request);
     }
-
-    public function NoFormRedirect() {
-        return redirect()->route('index');
+    // Begin delettion org
+    public function DeleteOrg(Request $request, $name) {
+        return Organizations::Deleter($request, $name);
+    }
+    // End deletion org
+    public function DeleterOrgValid(Request $request, $unicode) {
+        return Organizations::DeleterValid($request, $unicode);
     }
 
-    public function DeleteFirstLink(Request $request, $name) {
-        $owner = Users::where('id', Organizations::where('name', urldecode($name)));
+    // Protector
+    public function NoFormRedirect() {
+        return redirect()->route('index');
     }
 }
