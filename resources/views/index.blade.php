@@ -102,7 +102,7 @@
                     <img src="photo/marie.jpg" title="Marie BRIAND FREDET">
                 </p>
                 <p>
-                <h2>Marie BRIAND FREDET</h2>
+                <h2><i class="fas fa-paw"></i> - Marie BRIAND FREDET</h2>
                 <p>Développement Back / Intégration Front</p>
                 <p><a href="mailto:marie.briand@imie.fr">marie.briand@imie.fr</a></p>
                 <p><a href="tel:0682477407">06 82 47 74 07</a></p>
@@ -116,7 +116,7 @@
                     <img src="photo/dim.jpg" title="Dimitri BAHUAUD">
                 </p>
                 <p>
-                <h2>Dimitri BAHUAUD</h2>
+                <h2><i class="fas fa-paint-brush"></i> - Dimitri BAHUAUD</h2>
                 <p>Développement Back / Intégration Front</p>
                 <p><a href="mailto:marie.briand@imie.fr">dimitri.bahuaud@imie.fr</a></p>
                 <p><a href="tel:0610025549">06 10 02 55 49</a></p>
@@ -129,7 +129,7 @@
                     <img src="photo/fred.jpg" title="Frédéric GUEHO">
                 </p>
                 <p>
-                <h2>Frédéric GUEHO</h2>
+                <h2><i class="far fa-smile"></i> - Frédéric GUEHO</h2>
                 <p>Développement Back / Intégration Front</p>
                 <p><a href="mailto:marie.briand@imie.fr">frederic.gueho@imie.fr</a></p>
                 <p><a href="tel:0669362925">06 69 36 29 25</a></p>
@@ -142,7 +142,7 @@
                     <img src="photo/ayoub.jpg" title="Ayoub ASSAÏRH">
                 </p>
                 <p>
-                <h2>Ayoub ASSAÏRH</h2>
+                <h2><i class="fas fa-camera"></i> - Ayoub ASSAÏRH</h2>
                 <p>Développement Back / Intégration Front</p>
                 <p><a href="mailto:ayoub.assairh@imie.fr">ayoub.assairh@imie.fr</a></p>
                 <p><a href="tel:0647502209">06 47 50 22 09</a></p>
@@ -155,7 +155,7 @@
                     <img src="photo/anatole.jpg" title="Anatole PIVETEAU">
                 </p>
                 <p>
-                    <h2>Anatole PIVETEAU</h2>
+                    <h2><i class="fas fa-desktop"></i> - Anatole PIVETEAU</h2>
                     <p>Développement Back / Intégration Front</p>
                     <p><a href="mailto:anatole.piveteau@imie.fr">anatole.piveteau@imie.fr</a></p>
                     <p><a href="tel:0648162159">06 48 16 21 59</a></p>
