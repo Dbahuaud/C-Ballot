@@ -95,7 +95,7 @@
         </div>
     @endif
     <div class="container-fluid">
-        <h1 style="text-align: center; margin: 50px 0;">Collaborateurs au projet :</h1>
+        <h1 style="text-align: center; margin: 50px 0;"><i class="fas fa-users"></i> | Collaborateurs au projet | <i class="fas fa-users"></i></h1>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4" id="profil_dev">
                 <p>
