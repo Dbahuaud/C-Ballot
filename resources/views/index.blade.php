@@ -3,7 +3,7 @@
 
     <div id="carousel" class="container-fluid">
         <div class="row">
-            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="7500">
                 <!-- Items -->
                 <div class="carousel-inner" style="height: 90vh;">
                     <div class="active carousel-item">
