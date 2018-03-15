@@ -55,6 +55,9 @@ a{
 
 #modalASSO{
     width: 500px;
+    max-height: 750px;
+    overflow:scroll;
+    overflow-x: hidden;
     right: 0;
     position: absolute;
     background-color: white;
