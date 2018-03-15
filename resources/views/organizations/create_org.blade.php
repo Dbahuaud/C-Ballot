@@ -2,7 +2,7 @@
     {{csrf_field()}}
     <div class="form-group">
         <label for="">Nom de l'Organisation</label>
-        <input type="text" class="form-control" name="name">
+        <input type="text" class="form-control" name="name" class="form-control" id="" placeholder=" Entres le nom !!">
     </div>
     <div class="form-group">
         <label for="">Numéro de Siret</label>

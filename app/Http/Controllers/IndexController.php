@@ -39,7 +39,7 @@ class IndexController extends Controller
         $user->valid = 1;
         $user->save();
         Session::put('user', $user);
-        return view('index', ['message' => 'Merci pour votre inscription :) Signé, le DIGI']);
+        return redirect('/');
     }
     // Connection form submitted
     public function Connect(Request $request){
@@ -136,14 +136,16 @@ class IndexController extends Controller
     }
     // Vote interface
     public function Vote(Request $request, $id, $unicode) {
+        if (Participants::where('unicode', $unicode)->count() == 0)
+            return redirect('/');
         $p = Participants::where('unicode', $unicode)->get()[0];
         if ($p->vote == 1)
-            return view('index', ['message' => 'Erreur ! vous avez déja répondu au vote de cette invitation']);
+            return redirect('/');
         if ($p->id_event != $id)
-            return view('index', ['message' => "Erreur ! vous n'avez pas été conviez à cette campagne"]);
+            return redirect('/');
         $event = Events::where('id', $id)->get()[0];
         if ($event->active == 0)
-            return view('index', ['message' => 'Erreur ! cette campagne est terminée !']);
+            return redirect('/');
         $answer = Answers::where('id_event', $id)->get();
         return view("events.vote", ['e' => $event, 'a' => $answer, 'p' => $p]);
     }

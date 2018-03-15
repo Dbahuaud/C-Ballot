@@ -57,7 +57,7 @@ class Organizations extends Model
             return redirect('/');
         }
         else
-            return redirect()->route('index', ['message' => "Veuillez remplir tous les champs"]);
+            return redirect('/');
     }
 
     public static function Deleter(Request $request, $name) {
@@ -66,7 +66,7 @@ class Organizations extends Model
         Mail::send('mail.del_org', ['org' => $org, 'user' => $user], function ($message) use($user) {
             $message->to($user->email,$user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre Organisation");
         });
-        return view('index', ['message' => "Veuillez valider la suppression de l'organisation via le mail qui vous à été envoyé"]);
+        return redirect('/');
     }
 
     public static function DeleterValid(Request $request, $unicode) {

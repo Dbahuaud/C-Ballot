@@ -40,7 +40,7 @@ Route::post('/disconnect', 'IndexController@Disconnect');
 // E-mail validation account link
 Route::get('/register/valid/{unicode}', 'IndexController@ValidReg');
 // User Delete account mail
-Route::get('/user/delete/', 'IndexController@DeleteUser');
+Route::post('/user/delete/', 'IndexController@DeleteUser');
 // User Delete valid link
 Route::get('/user/delete/{unicode}', 'IndexController@DeleteUserValid');
 // Change Password Form new password input

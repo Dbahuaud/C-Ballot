@@ -82,23 +82,23 @@ class Users extends Model
                     $user = Users::where('email', $inputs['account'])->get()[0];
                     if(md5($inputs['password']) == $user->password){
                         Session::put('user', $user);
-                        return view('index', ['message' => 'Bienvenue']);
+                        return redirect()->route('index', ['message' => 'Bienvenue']);
                     }
                     else{
                         $error = 'Email ou Mot de passe incorrect';
-                        return redirect()->route('index', ['message' => 'Bienvenue']);
+                        return redirect()->route('index', ['message' => $error]);
                     }
                 }
                 else{
                     $error = 'Email ou Mot de passe incorrect';
-                    return view('false', ['error' => $error]);
+                    return redirect()->route('index', ['message' => $error]);
                 }
             }
 
         }
         else{
             $error = 'Email ou Mot de passe incorrect';
-            return view('false', ['error' => $error]);
+            return redirect()->route('index', ['message' => $error]);
         }
 
     }
@@ -111,11 +111,11 @@ class Users extends Model
             $user->password = md5($inputs['password']);
             $user->email = $inputs['email'];
             $user->save();
-            return view('form');
+            return redirect('/');
         }
         else{
             $error = 'Veuillez saisir un Email ou un Mot de passe valide';
-            return view('false', ['error' => $error]);
+            return redirect('/');
         }
     }
 
@@ -124,7 +124,7 @@ class Users extends Model
         Mail::send('mail.delete', ['user' => $user], function ($message) use($user){
             $message->to($user->email, $user->firstname . " " . $user->lastname)->subject("Validation de la suppression de votre compte");
         });
-        return view('index', ['message' => "Pour finaliser la suppression de votre compte, veuillez cliquer sur le lien envoyé par mail."]);
+        return redirect('/');
     }
 
     public static function Deleter(Request $request, $unicode) {
