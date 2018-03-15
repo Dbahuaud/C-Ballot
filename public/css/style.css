@@ -118,3 +118,30 @@ a{
     font-size: 18px;
 }
 
+#profil_dev>p:nth-child(1)>img {
+    min-width: 100%;
+    max-width: 400px;
+    min-height: 400px;
+}
+
+#profil_dev>p:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+#profil_dev {
+    margin: 50px 0;
+}
+
+#profil_dev>p {
+    display: block;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+#profil_dev h2 {
+    text-align: center;
+}
+

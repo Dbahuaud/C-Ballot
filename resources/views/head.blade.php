@@ -240,7 +240,6 @@
             @endif
             <!-- END MODAL -->
 
-            </ul>
     @if(Session::has("user"))
             <li>
                 <h4 style="display: inline-block;">Bienvenue, {{Session::get("user")->login}} ! </h4>
@@ -479,6 +478,7 @@
         @if(!empty($message))
             <script type="text/javascript">alert("{{$message}}");</script>
         @endif
+            </ul>
 
 
     </nav>
