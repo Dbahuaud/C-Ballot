@@ -59,6 +59,17 @@
             </div>
         </div>
 
+        <div class="logs offset-3">
+            {{Session::get("user")->login}}
+
+        </div>
+        <div class="logs2 offset-3">
+            {{Session::get("user")->firstname}}<br>
+            {{Session::get("user")->lastname}}<br>
+            {{Session::get("user")->organization}}<br>
+            {{Session::get("user")->email}}<br>
+        </div>
+
 
             <!-- CARROUSSEEEEELLLLL-->
             {{--<div>--}}
@@ -100,9 +111,15 @@
                 {{--</div>--}}
 
         {{--</div>--}}
-        <div class="img">
+        <div class="img offset-1 delete-xs-down ">
 
         </div>
+        <button class="boutonUser offset-1 btn btn-primary">
+            modifier
+        </button>
+        <button class="boutonUser offset-2 btn btn-danger">
+            supprimer
+        </button>
     </div>
 
 <style>
@@ -110,29 +127,47 @@
             /*left: -200px;*/
             
             /*height: 300px;*/
-            transform: skewY(-2deg);}
+            }
     #parent{
         width: 100%;
-        height: 300px;
+        height: 250px;
         overflow: hidden;
     }
     .img {
         background-color: green;
-        height: 250px;
-        width: 250px;
+        height: 225px;
+        width: 225px;
         position: absolute;
-        top: 200px;
-        left: 75px;
+        top: 100px;
+
 
     }
     .punchlineh{
         position: absolute;
         top: 100px;
         color: white;
-        transform: skewY(2deg);
     }
     .carousel-inner{
 
     }
+    .logs{
+        position: absolute;
+
+        top: 33%;
+        font-size: 40px;
+    }
+    .logs2{
+        position: absolute;
+
+        top: 50%;
+        font-size: 25px;
+    }
+    .boutonUser{
+        position: absolute;
+        top: 350px;
+    }
+
+
+
 </style>
 
