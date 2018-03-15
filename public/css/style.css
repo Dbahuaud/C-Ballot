@@ -1,4 +1,6 @@
 /* BASE */
+
+
 li{
     display: inline-block;
     margin-right:20px;
@@ -11,11 +13,10 @@ p{
 a{
     color: black;
     list-style: none;
+    text-decoration: none;
 }
 
 /* NAV */
-
-
 
 #mdpLost{
     color: red;
@@ -62,12 +63,38 @@ a{
     box-shadow: 1px 1px 12px black;
 }
 
+#plus{
+    font-size: 50px;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.boutton{
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 10px;
+}
+
 /* MODAL */
 
 .modalTitle{
     color: black;
 }
 
+/* CREATE SONDAGE */
+
+#createSondageHome{
+    background-color: white;
+    position: absolute;
+    top:300px;
+    border-radius: 2%;
+    box-shadow: 1px 1px 12px black;
+    text-align: center;
+}
+
+#createSondageHome{
+    font-size: 20px;
+}
 
 /* CAROUSSEL */
 
@@ -87,3 +114,4 @@ a{
     top:300px;
     font-size: 18px;
 }
+

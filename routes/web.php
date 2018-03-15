@@ -11,6 +11,7 @@
 |
 */
 
+
 // INDEX ROUTE
 Route::get('/', 'IndexController@Index')->name('index');
 

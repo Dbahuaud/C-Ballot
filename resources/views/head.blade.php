@@ -25,6 +25,7 @@
     <nav class="navbar navbar-light bg-faded navbar-right" style="display: inline-block;" id="nav">
 
         <a class="navbar-brand" href="#">C-Ballot</a>
+
         <ul class="navbar-nav" style="display: inline-block;">
         <li  class="nav-item" style="display: inline-block;">
 
@@ -35,8 +36,58 @@
                 <input data-target="#searchBar"type="text" name="search" placeholder="Search..">
             </span>
         </li>
+            @if(Session::has("user"))
+        <li class="nav-item" style="display: inline-block;">
+           <a data-toggle="modal" href="#squarespaceModal"  class="nav-link nav-item"><strong>Je crée mon sondage</strong></a>
+        </li>
+@endif
+
+        {{-- CREATE SONDAGE --}}
 
 
+            <!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title" id="lineModalLabel">Créer mon sondage</h3>
+		</div>
+		<div class="modal-body">
+
+            <!-- content goes here -->
+			<form>
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="email" class="form-control" id="title" placeholder="Donnez un super titre !!">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" maxlength="500" class="form-control" id="description" placeholder="Tu sais plus pourquoi tu fais ton sondage ? C Ballot !"></textarea>
+                </div>
+                <div class="form-group" style="display: inline-block">
+                    <label for="datetime_begin">Date de début</label>
+                    <input class="form-control" type="datetime-local" id="datetime_begin">
+                </div>
+                <div class="form-group" style="display: inline-block">
+                    <label for="datetime_end">Date de fin</label>
+                    <input class="form-control" type="datetime-local" id="datetime_end">
+                </div>
+                <div>
+              <button type="submit" class="btn btn-primary">Créer</button>
+                    </div>
+            </form>
+
+		</div>
+		<div class="modal-footer">
+			<div class="btn-group" role="group">
+                <button type="submit" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+            </div>
+		</div>
+	</div>
+
+</div>
+
+        {{-- FIN CREATE SONDAGE --}}
 
         {{-- SIGN UP --}}
         <li class="nav-item navbar-right">
@@ -169,27 +220,87 @@
 
         <div class="modalAsso modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">Tes sondages</h4>
+            </div>
+
+            @if(isset($events))
+                @foreach($events as $e)
+                    <div class="modal-body">
+                            <a href="" style="text-decoration: none;">
+                                <div class="col-5" style="width: 100%; height: 100%; background-color: white; text-align: right; display: inline-block">
+                                    <h5>{{$e->title}}</h5>
+                                </div>
+                                <button class="btn btn-primary btn boutton" style="display: inline-block" >Modifier</button>
+                                <button class="btn btn-danger btn boutton" style="display: inline-block" >Supprimer</button>
+                            </a>
+                        </div>
+                @endforeach
+            @endif
+
+
+            <div class="modal-header">
                 <h4 class="modal-title">Tes associations</h4>
             </div>
-            <div class="modal-body">
+
                 @if(isset($org))
                     @foreach($org as $o)
-
-                        <h5>{{$o->name}}</h5>
-
+                    <a href="" style="text-decoration: none;">
+                        <div class="modal-body col-5" style="width: 100%; height: 100%; background-color: white; text-align: right; display: inline-block">
+                            <h5>{{$o->name}}</h5>
+                        </div>
+                        <button class="btn btn-primary btn boutton" style="display: inline-block" >Modifier</button>
+                        <button class="btn btn-danger btn boutton" style="display: inline-block" >Supprimer</button>
+                        </a>
                     @endforeach
                 @endif
+
+            <div class="modal-content">
+                <a href="#createAsso" data-toggle="collapse" style="text-decoration: none;">
+                    <strong id="plus" style="position: relative; margin-left: 50%;">+</strong></a>
             </div>
+
+            <!-- Modal CREATE ASSO -->
+            <div id="createAsso" class="collapse">
+                <div class="modal-body">
+                    	<form>
+					<div class="form-line">
+			  			<div class="form-group">
+			  				<label for="exampleInputUsername">Nom de l'association</label>
+					    	<input type="text" class="form-control" id="" placeholder=" Entres le nom !!">
+				  		</div>
+			  		<div class="">
+			  			<div class="form-group">
+			  				<label for ="description"> Numéro de SIRET</label>
+			  			 	<input  class="form-control" id="description" type="number" placeholder="Entres le Siret !!"></input>
+			  			</div>
+			  			<div>
+			  				<button type="button" class="btn btn-primary submit" data-toggle="collapse" href="#createAsso"><i aria-hidden="true"></i>Créer l'association</button>
+			  			</div>
+
+					</div>
+				</form>
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-toggle="collapse" href="#modalASSO" data-dismiss="modal">Close</button>
             </div>
         </div>
 
-</div>
-
-
-
         <!-- FIN Modal ASSO -->
+
+
+
+
+
+
+
 
 
 

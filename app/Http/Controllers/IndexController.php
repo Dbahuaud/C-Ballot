@@ -27,7 +27,6 @@ class IndexController extends Controller
 
 
 
-
     // Register form submitted
     public function RegSubmit(Request $request){
         return Users::AddUser($request);
