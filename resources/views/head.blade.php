@@ -271,7 +271,7 @@
                 @php
                     $org = \App\Organizations::where('id_user', Session::get('user')->id)->get();
                     foreach($org as $o) {
-                        $event = \App\Events::where('unicode_owner', $o->unicode)->orderBy('active');
+                        $event = \App\Events::where('unicode_owner', $o->unicode)->orderBy('active')->get();
                         foreach($event as $e) {
                         @endphp
                             <div class="modal-body">
@@ -381,7 +381,7 @@
                                 <div class="form-group col-10 offset-1" >
                                     <label for="datetime_end" style="display: inline-block">Date de fin</label>
                                     <p>
-                                        <input type="date" name="end_d"><input type="time" name="end_t" value="10:00:00">
+                                        <input type="date" name="end_d"><input type="time" name="end_t" valuge="10:00:00">
                                     </p>
                                 </div>
                                 <div class="form-group col-10 offset-1">
