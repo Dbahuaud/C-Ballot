@@ -370,12 +370,12 @@
                                 </div>
                                 <div class="form-group col-10 offset-1" >
                                     <label for="begin">Date de depart</label>
-                                    <p><input type="date" name="begin_d"><input type="time" name="begin_t"></p>
+                                    <p><input type="date" name="begin_d"><input type="time" name="begin_t" value="09:00:00"></p>
                                 </div>
                                 <div class="form-group col-10 offset-1" >
                                     <label for="datetime_end" style="display: inline-block">Date de fin</label>
                                     <p>
-                                        <input type="date" name="end_d"><input type="time" name="end_t">
+                                        <input type="date" name="end_d"><input type="time" name="end_t" value="10:00:00">
                                     </p>
                                 </div>
                                 <div class="form-group col-10 offset-1">
