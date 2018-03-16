@@ -66,8 +66,8 @@ class Events extends Model
             $mail = str_replace(" ", "", $participant[$i]);
             $mail = str_replace("\n", "", $mail);
             $mail = str_replace("\r", "", $mail);
-            $mail = array_filter($mail);
-            $nPart->email = $mail;
+            $mails = array_filter($mail);
+            $nPart->email = $mails;
             $nPart->unicode = Users::Unicode(15);
             $nPart->throwed = 0;
             $nPart->id_event = $inputs['id'];
