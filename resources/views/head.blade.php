@@ -313,9 +313,11 @@
                                         @else
                                             <h5 style="display: flex; justify-content: space-around">
                                                 <span style="width: 150px; overflow: hidden; text-align: left;">{{$e->title}}</span>
-                                                <form action="{{action('IndexController@SendInvitationVote')}}" method="post" style="width: 100px;">{{csrf_field()}}<input type="hidden" name="id" value="{{$e->id}}"><button class="btn btn-primary btn" style="width:100px;">Inviter <i class="far fa-envelope"></i></button></form>
-                                                <form action="{{action('IndexController@CloseEvent')}}" method="post">{{csrf_field()}}<input type="hidden" name="id" value="{{$e->id}}"><button class="btn btn-danger btn" style="width:100px;">Cloturer <i class="fas fa-times"></i></button></form>
-                                                <a href="#AddPart{{$e->id}}" data-toggle="collapse" style="display: inline-block; width: 50px; height: 50px; font-size: 30px;"><i class="far fa-edit"></i></a>
+                                                @if($e->active == 1)
+                                                    <form action="{{action('IndexController@SendInvitationVote')}}" method="post" style="width: 100px;">{{csrf_field()}}<input type="hidden" name="id" value="{{$e->id}}"><button class="btn btn-primary btn" style="width:100px;">Inviter <i class="far fa-envelope"></i></button></form>
+                                                    <form action="{{action('IndexController@CloseEvent')}}" method="post">{{csrf_field()}}<input type="hidden" name="id" value="{{$e->id}}"><button class="btn btn-danger btn" style="width:100px;">Cloturer <i class="fas fa-times"></i></button></form>
+                                                    <a href="#AddPart{{$e->id}}" data-toggle="collapse" style="display: inline-block; width: 50px; height: 50px; font-size: 30px;"><i class="far fa-edit"></i></a>
+                                                @endif
                                             </h5>
                                             <div class="collapse" id="AddPart{{$e->id}}">
                                                 <form action="{{action('IndexController@ParticipantUpdater')}}" method="post">
