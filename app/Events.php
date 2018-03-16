@@ -43,7 +43,7 @@ class Events extends Model
                 $mail = str_replace("\r", "", $participant[$i]);
                 $mail = str_replace('\n', "", $mail);
                 $mail = str_replace(" ", "", $mail);
-                $nPart->email = str_replace(" ", "", $participant[$i]);
+                $nPart->email = $mail;
                 $nPart->unicode = Users::Unicode(15);
                 $nPart->throwed = 0;
                 $nPart->id_event = $nEvent->id;
@@ -66,6 +66,7 @@ class Events extends Model
             $mail = str_replace(" ", "", $participant[$i]);
             $mail = str_replace("\n", "", $mail);
             $mail = str_replace("\r", "", $mail);
+            $mail = array_filter($mail);
             $nPart->email = $mail;
             $nPart->unicode = Users::Unicode(15);
             $nPart->throwed = 0;
