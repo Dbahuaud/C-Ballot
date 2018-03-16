@@ -32,7 +32,7 @@ class Events extends Model
             $i = 0;
             while ($i < count($answer)) {
                 $nAnswer = new Answers();
-                $nAnswer->answer = array_filter($answer);
+                $nAnswer->answer = $answer[$i];
                 $nAnswer->id_event = $nEvent->id;
                 $nAnswer->save();
                 $i++;
