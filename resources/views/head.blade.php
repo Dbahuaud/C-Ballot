@@ -271,7 +271,7 @@
                 @php
                     $org = \App\Organizations::where('id_user', Session::get('user')->id)->get();
                     foreach($org as $o) {
-                        $event = \App\Events::where('unicode_owner', $o->unicode)->get();
+                        $event = \App\Events::where('unicode_owner', $o->unicode)->orderBy('active');
                         foreach($event as $e) {
                         @endphp
                             <div class="modal-body">
@@ -319,6 +319,10 @@
                                                     <a href="#AddPart{{$e->id}}" data-toggle="collapse" style="display: inline-block; width: 50px; height: 50px; font-size: 30px;"><i class="far fa-edit"></i></a>
                                                 @endif
                                             </h5>
+                                            <p>{{$e->datetime_begin}}</p>
+                                            @if($e->active == 1)
+                                            <p>{{$e->datetime_end}}</p>
+                                            @endif
                                             <div class="collapse" id="AddPart{{$e->id}}">
                                                 <form action="{{action('IndexController@ParticipantUpdater')}}" method="post">
                                                     {{csrf_field()}}
