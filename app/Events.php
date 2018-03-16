@@ -32,10 +32,7 @@ class Events extends Model
             $i = 0;
             while ($i < count($answer)) {
                 $nAnswer = new Answers();
-                $mail = str_replace("\r", "", $answer[$i]);
-                $mail = str_replace('\n', "", $mail);
-                $mail = str_replace(" ", "", $mail);
-                $nAnswer->answer = $mail;
+                $nAnswer->answer = $answer;
                 $nAnswer->id_event = $nEvent->id;
                 $nAnswer->save();
                 $i++;
@@ -43,6 +40,9 @@ class Events extends Model
             $i = 0;
             while ($i < count($participant)) {
                 $nPart = new Participants();
+                $mail = str_replace("\r", "", $participant[$i]);
+                $mail = str_replace('\n', "", $mail);
+                $mail = str_replace(" ", "", $mail);
                 $nPart->email = str_replace(" ", "", $participant[$i]);
                 $nPart->unicode = Users::Unicode(15);
                 $nPart->throwed = 0;
@@ -63,9 +63,10 @@ class Events extends Model
         $i = 0;
         while ($i < count($participant)) {
             $nPart = new Participants();
-            $nPart->email = str_replace(" ", "", $participant[$i]);
-            $nPart->email = str_replace("\n", "", $participant[$i]);
-            $nPart->email = str_replace("\r", "", $participant[$i]);
+            $mail = str_replace(" ", "", $participant[$i]);
+            $mail = str_replace("\n", "", $mail);
+            $mail = str_replace("\r", "", $mail);
+            $nPart->email = $mail;
             $nPart->unicode = Users::Unicode(15);
             $nPart->throwed = 0;
             $nPart->id_event = $inputs['id'];
