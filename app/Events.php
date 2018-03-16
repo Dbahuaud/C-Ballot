@@ -60,14 +60,14 @@ class Events extends Model
         $inputs = $request->all();
         Participants::where('id_event', $inputs['id'])->delete();
         $participant = explode('/', $inputs['participant']);
+        $participant = array_filter($participant);
         $i = 0;
         while ($i < count($participant)) {
             $nPart = new Participants();
             $mail = str_replace(" ", "", $participant[$i]);
             $mail = str_replace("\n", "", $mail);
             $mail = str_replace("\r", "", $mail);
-            $mails = array_filter($mail);
-            $nPart->email = $mails;
+            $nPart->email = $mail;
             $nPart->unicode = Users::Unicode(15);
             $nPart->throwed = 0;
             $nPart->id_event = $inputs['id'];
