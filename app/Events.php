@@ -14,6 +14,8 @@ class Events extends Model
         $nEvent = new Events();
         $answer = explode('/', $inputs['answer']);
         $participant = explode('/', $inputs['participant']);
+        $answer = array_filter($answer);
+        $participant = array_filter($participant);
         if (!empty($inputs['title']) && !empty($inputs['description']) && !empty($inputs['begin_t'])
             && !empty($inputs['begin_d']) && !empty($inputs['end_t'])&& !empty($inputs['end_d'])
             && count($participant) > 2 && count($answer) > 1) {
