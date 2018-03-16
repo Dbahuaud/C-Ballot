@@ -30,7 +30,10 @@ class Events extends Model
             $i = 0;
             while ($i < count($answer)) {
                 $nAnswer = new Answers();
-                $nAnswer->answer = $answer[$i];
+                $mail = str_replace("\r", "", $answer[$i]);
+                $mail = str_replace('\n', "", $mail);
+                $mail = str_replace(" ", "", $mail);
+                $nAnswer->answer = $mail;
                 $nAnswer->id_event = $nEvent->id;
                 $nAnswer->save();
                 $i++;
